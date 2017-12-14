@@ -14,7 +14,7 @@ module.exports = {
             {
                 test:/\.css$/,
                 exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
+                use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use:[{
                         loader: 'css-loader',
@@ -25,7 +25,7 @@ module.exports = {
                       },
                       'postcss-loader'
                     ] 
-                }),  
+                })),  
                 
             },
             {test: /\.js$/, exclude: /node_modules/, use:["babel-loader"]},
@@ -33,7 +33,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'La mesa elegante: renta de sillas y mesas'
+            title: 'Workspace',
+            template: 'src/index.html'
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
