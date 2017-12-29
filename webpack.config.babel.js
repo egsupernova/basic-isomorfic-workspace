@@ -29,6 +29,11 @@ module.exports = {
                 
             },
             {test: /\.js$/, exclude: /node_modules/, use:["babel-loader"]},
+            {test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=img/[name].[ext]"},
+            {
+                test: /\.(woff|woff2|eot|ttf)$/i,
+                loader: "file-loader?name=fonts/[name]-[hash].[ext]"
+            }
         ]
     },
     plugins: [
