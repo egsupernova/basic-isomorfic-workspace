@@ -37,10 +37,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Workspace',
-            template: 'src/index.html'
-        }),
+        
         new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
             filename: "commons.js"
@@ -50,7 +47,7 @@ module.exports = {
     ],
     output: {   
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'public'),
         publicPath: '/'
 
     },
