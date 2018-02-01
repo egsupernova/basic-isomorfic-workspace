@@ -1,5 +1,5 @@
-const path = require ('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+import path from 'path';
+import HtmlWebpackPlugin from  'html-webpack-plugin'
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import webpack from 'webpack';
 const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
@@ -44,7 +44,6 @@ module.exports = {
             filename: "commons.js"
         }),
         new ExtractTextPlugin("style.css"),
-        new webpack.HotModuleReplacementPlugin(),
     ],
     output: {   
         filename: '[name].bundle.js',

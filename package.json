@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node app"
+    "dev": "NODE_ENV=development babel-node app",
+    "build-prod": "webpack --config webpack.prod.babel.js",
+    "prod": "NODE_ENV=production babel-node app"
   },
   "author": "Sergio Expósito",
   "license": "ISC",
@@ -24,9 +26,11 @@
     "postcss-nested": "^3.0.0",
     "postcss-nested-ancestors": "^1.0.0",
     "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^3.8.1",
     "webpack-dev-middleware": "^1.12.2",
-    "webpack-hot-middleware": "^2.21.0"
+    "webpack-hot-middleware": "^2.21.0",
+    "webpack-merge": "^4.1.1"
   },
   "dependencies": {
     "ejs": "^2.5.7",
