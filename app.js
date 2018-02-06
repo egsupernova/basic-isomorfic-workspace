@@ -1,5 +1,5 @@
 import express from "express";
-import config from './webpack.dev.babel'
+import config from './config/webpack.dev.babel'
 import webpack from "webpack"
 import routes from "./routes"
 import webpackMiddleware from 'webpack-dev-middleware'
@@ -29,7 +29,6 @@ if(isDeveloping) {
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true, publicPath: config.output.publicPath
   }));
-  
   app.use(require('webpack-hot-middleware')(compiler , {
       log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
   }));

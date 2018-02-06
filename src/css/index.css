@@ -3,3 +3,7 @@
 @import "elements";
 /*@import "Objects";
 @import "Components";*/
+
+h1 {
+    color:red
+}

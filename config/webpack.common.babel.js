@@ -1,8 +1,10 @@
 import path from 'path';
 import HtmlWebpackPlugin from  'html-webpack-plugin'
-import ExtractTextPlugin from "extract-text-webpack-plugin";
 import webpack from 'webpack';
+import extractTextPlugin from 'extract-text-webpack-plugin'
+import CleanWebpackPlugin from 'clean-webpack-plugin'
 const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
+
 
 
 module.exports = {
@@ -12,23 +14,7 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test:/\.css$/,
-                exclude: /node_modules/,
-                use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use:[{
-                        loader: 'css-loader',
-                        options:{
-                          importLoaders: 1,
-                          sourceMap: true
-                        }
-                      },
-                      'postcss-loader'
-                    ] 
-                })),  
-                
-            },
+            
             {test: /\.js$/, exclude: /node_modules/, use:["babel-loader"]},
             {test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=img/[name].[ext]"},
             {
@@ -41,13 +27,16 @@ module.exports = {
         
         new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
-            filename: "commons.js"
+            filename: "js/commons.js"
         }),
-        new ExtractTextPlugin("style.css"),
+        new CleanWebpackPlugin(['public']),
+        new extractTextPlugin({
+            filename: (getPath) => getPath('css/[name].css')
+        }),
     ],
     output: {   
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'public'),
+        filename: 'js/[name].bundle.js',
+        path: path.resolve(__dirname, '../public'),
         publicPath: '/'
 
     },
